@@ -5,8 +5,8 @@ use eWholeFoods;
 
 create table user (
 	userID int NOT NULL AUTO_INCREMENT Primary Key,
-	username varchar(100) NOT NULL,
-	password varchar(100) NOT NULL,
+	_username varchar(100) NOT NULL,
+	_password varchar(100) NOT NULL,
 	email varchar(100) NOT NULL,
 	first_name varchar(100) NOT NULL,
 	last_name varchar(100) NOT NULL,
