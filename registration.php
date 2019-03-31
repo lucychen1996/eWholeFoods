@@ -4,16 +4,42 @@ require 'header.php';
 
 ?>
 
-<form name="registration" action="MainProductsPage.php" method="POST">
-    Username:<input type="text" name="username"><br>
-    Password:<input type="text" name="password"><br>
-    Email:<input type="text" name="email"><br>
-    First Name:<input type="text" name="first_name"><br>
-    Last Name:<input type="text" name="last_name"><br>
-   
-    
-    <input type="submit" value="submit">
+<div class="accountForm"> 
+ <h4> Create an Account</h4>
+
+<form name="registration" action="registration.php" method="POST">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder=" Enter Password" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">First Name</label>
+        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter First Name" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Last Name</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Last Name" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Access</label>
+        <input class="form-control" type="text" name="access" value="user" readonly>
+    </div>
+    <div class="form-group ">
+        <button type="submit" class="btn btn-block" id="submitbtn" value="submit" >Create Account</button>
+    </div>
+    <div class="form-group">
+        <p class="text-center"> or <br> Got an account? Log In! <a href="login.php" id="login">Log In here</a></p>
+    </div>
 </form>
+</div>
 
 
 <?php
@@ -30,6 +56,7 @@ $first_name = $_POST["first_name"];
 $last_name = $_POST["last_name"];
 $is_admin = 0;
 
+
 // Create connection
 $servername = "localhost";
 $username = "root";
@@ -43,33 +70,24 @@ if ($conn->connect_error) {
 } 
 // echo "<p><font color=\"red\">Connected successfully</font></p>";
 
-if ($_username == "" || $_password == "" || $email == ""|| $first_name == ""|| $last_name == "")
-{
-    die("You are missing some inputs");
-}
-
 //insert into database
 $sql = "INSERT INTO user (_username, _password, email, first_name, last_name, is_admin) VALUES ('$_username', '$_password', '$email', '$first_name', '$last_name', $is_admin)";
 echo $sql;
 $result = $conn->query($sql);
-// echo $sql;
 
-// if(!$result)
-// {
-//     echo "Please fill in all fields. <a href = 'registration.php'>Try Again</a>";
-// }
 
 if ($result) {
-    
-    echo "Successful!<a href='MainProductsPage.php'>Check Results Here</a>";
+
+    $test = "apidjfpasd";
+    $_SESSION['_username'] = $test;
+    // header("Location: MainProductsPage.php");
+
 } 
 else {
     echo "Something went Wrong!<a href='home.php'>Try Again</a>";
 }
 
-$test = "apidjfpasd";
 
-$_SESSION['_username'] = $test;
 
 // Close connection
 mysqli_close($conn);
