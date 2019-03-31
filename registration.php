@@ -17,6 +17,10 @@ require 'header.php';
 
 
 <?php
+require 'footer.php'
+?>
+
+<?php
 
 session_start();
 $_username = $_POST["username"];
@@ -70,6 +74,7 @@ $_SESSION['_username'] = $test;
 // Close connection
 mysqli_close($conn);
 
-require 'footer.php'
-
 ?>
+
+
+

@@ -1,3 +1,11 @@
-.homebutton {
+#reg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    background-color: aquamarine;
+}
+
+form {
     align-items: center;
 }
