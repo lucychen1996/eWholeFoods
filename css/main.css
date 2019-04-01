@@ -1,11 +1,57 @@
+.homebtn {
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    margin-bottom: 5%;
+
+}
+
 #reg {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: red;
-    background-color: aquamarine;
+    color:white;
+    background-color: navy;
+}
+
+#log {
+    color:white;
+    background-color: green;
 }
 
 form {
     align-items: center;
 }
+
+.banner {
+    text-align: center;
+    margin: 10%;
+    position: static;
+}
+
+
+.accountForm {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 1rem;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.2);
+        border-radius: 1.1rem;
+        max-width: 500px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 5%;
+}
+
+#submitbtn {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
