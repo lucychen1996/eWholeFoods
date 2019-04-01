@@ -17,3 +17,5 @@ require 'header.php';
 require 'footer.php'
 
 ?>
+
+<a href = "logout.php">Sign Out</a>

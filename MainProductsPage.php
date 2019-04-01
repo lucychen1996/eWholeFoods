@@ -7,24 +7,18 @@ require 'header.php';
 
 <?php
 
-	session_start();
-
-	$servername = "localhost";
-	$username = "root";
-	$password = "mysql";
-	$database = "eWholeFoods";
-	$conn = new mysqli($servername,$username,$password,$database);
+	require 'session.php';
 
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	} 
 
-	$_username = $_SESSION['_username'];
+	$_username = $login_session;
 
-	echo "Welcome ".$_username;
+	echo "Welcome ".$_username ;
 
-	echo "PRODUCTS\n";
+	echo "<br> PRODUCTS\n";
 
 	$sql_show_products = 'select item_name, CONCAT(current_stock_quantity, " ", IF(product_type = "weight","lb","units")), CONCAT(\'$\',price,\'/\',IF(product_type = "weight","lb","unit")) from products';
 	$result_show_products = $conn->query($sql_show_products);
@@ -52,6 +46,8 @@ require 'header.php';
 		}
 
 		echo "<br/>";
+
+		
 
 ?>
 

@@ -47,6 +47,7 @@ require 'footer.php'
 ?>
 
 <?php
+require 'config.php';
 
 session_start();
 $_username = $_POST["username"];
@@ -56,41 +57,28 @@ $first_name = $_POST["first_name"];
 $last_name = $_POST["last_name"];
 $is_admin = 0;
 
-
-// Create connection
-$servername = "localhost";
-$username = "root";
-$password = "mysql";
-$database = "eWholeFoods";
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-// echo "<p><font color=\"red\">Connected successfully</font></p>";
-
-//insert into database
-$sql = "INSERT INTO user (_username, _password, email, first_name, last_name, is_admin) VALUES ('$_username', '$_password', '$email', '$first_name', '$last_name', $is_admin)";
-echo $sql;
+$sql = "SELECT userID FROM user WHERE _username = '$_username'";
 $result = $conn->query($sql);
+echo $sql;
 
+if($result) {
+    $count = mysqli_num_rows($result);
+    echo $count;
+    if($count == 1) {
 
-if ($result) {
+        $error = "Username is Taken";
+        echo $error;
 
-    $test = "apidjfpasd";
-    $_SESSION['_username'] = $test;
-    // header("Location: MainProductsPage.php");
+    } else {
 
-} 
-else {
-    echo "Something went Wrong!<a href='home.php'>Try Again</a>";
+        $sql2 = "INSERT INTO user (_username, _password, email, first_name, last_name, is_admin) VALUES ('$_username', '$_password', '$email', '$first_name', '$last_name', $is_admin)";
+        $result2= $conn->query($sql2);
+        $_SESSION['login_user'] = $_username;
+        header("location: MainProductsPage.php");
+    }
 }
 
 
-
-// Close connection
-mysqli_close($conn);
 
 ?>
 
