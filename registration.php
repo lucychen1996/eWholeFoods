@@ -50,6 +50,7 @@ require 'footer.php'
 require 'config.php';
 
 session_start();
+
 $_username = $_POST["username"];
 $_password = $_POST["password"];
 $email = $_POST["email"];
@@ -66,15 +67,18 @@ if($result) {
     echo $count;
     if($count == 1) {
 
-        $error = "Username is Taken";
-        echo $error;
+        $message = "Username is Taken";
+        echo "<script type='text/javascript'>window.alert('$message');</script>";
 
     } else {
 
         $sql2 = "INSERT INTO user (_username, _password, email, first_name, last_name, is_admin) VALUES ('$_username', '$_password', '$email', '$first_name', '$last_name', $is_admin)";
         $result2= $conn->query($sql2);
-        $_SESSION['login_user'] = $_username;
-        header("location: MainProductsPage.php");
+
+        session_start();
+                $_SESSION["loggedin"] = true;
+                $_SESSION["_username"] = $_username;
+                header("location: welcome.php?user=$_SESSION[_username]");
     }
 }
 
