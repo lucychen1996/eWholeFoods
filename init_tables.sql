@@ -19,28 +19,24 @@ create table products (
 	current_stock_quantity int NOT NULL,
 	price float(25) NOT NULL,
 	nutrition_facts varchar(1000) NOT NULL,
-	product_type varchar(100) NOT NULL
+	unit varchar(100) NOT NULL,
+	category varchar(100) NOT NULL,
+	image varchar(100) NOT NULL
 );
 
 create table shopping_cart (
 	shopping_cartID int NOT NULL AUTO_INCREMENT Primary Key,
-	userID int NOT NULL
+	userID int NOT NULL,
+	FOREIGN KEY (userID) REFERENCES user(userID) ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
 create table cartItem (
 	cartID int NOT NULL AUTO_INCREMENT Primary Key,
 	productID int NOT NULL,
 	quantity int NOT NULL,
-	shopping_cartID int NOT NULL
-);
-
-create table transcactions (
-	orderID int NOT NULL AUTO_INCREMENT Primary Key,
-	userID int NOT NULL,
 	shopping_cartID int NOT NULL,
-	addressID int NOT NULL,
-	total float(50) NOT NULL,
-	order_date datetime NOT NULL
+	FOREIGN KEY (productID) REFERENCES products(productID)  ON UPDATE CASCADE ON DELETE CASCADE, 
+	FOREIGN KEY (shopping_cartID) REFERENCES shopping_cart(shopping_cartID)  ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table addresses (
@@ -49,5 +45,18 @@ create table addresses (
 	street varchar(100) NOT NULL,
 	city varchar(100) NOT NULL,
 	state varchar(2) NOT NULL,
-	zip int NOT NULL
+	zip int NOT NULL,
+	FOREIGN KEY (userID) REFERENCES user(userID)  ON UPDATE CASCADE ON DELETE CASCADE
 )
+
+create table transactions (
+	transationID int NOT NULL AUTO_INCREMENT Primary Key,
+	userID int NOT NULL,
+	shopping_cartID int NOT NULL,
+	addressID int NOT NULL,
+	total float(50) NOT NULL,
+	order_date datetime NOT NULL,
+	FOREIGN KEY (userID) REFERENCES user(userID) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (shopping_cartID) REFERENCES shopping_cart(shopping_cartID)  ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (addressID) REFERENCES addresses(addressID)  ON UPDATE CASCADE ON DELETE CASCADE 
+);

@@ -51,6 +51,11 @@ require 'config.php';
 
 session_start();
 
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true && isset($_SESSION["_username"])){
+    header("location: welcome.php?user=$_SESSION[_username]");
+    exit;
+}
+
 $_username = $_POST["username"];
 $_password = $_POST["password"];
 $email = $_POST["email"];
