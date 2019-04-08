@@ -12,7 +12,7 @@ require 'footer.php'
 session_start();
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true && isset($_SESSION["_username"])){
-    header("location: MainProductsPage.php?user=$_SESSION[_username]");
+    header("location: welcome.php?user=$_SESSION[_username]");
     exit;
 }
 
@@ -37,7 +37,7 @@ if($result_exist){
             if($count == 1) {
                 $_SESSION["loggedin"] = true;
                 $_SESSION["_username"] = $_username;
-                header("location: MainProductsPage.php?user=$_SESSION[_username]");
+                header("location: welcome.php?user=$_SESSION[_username]");
 
             } else {
                 $message = "Your Login Name or Password is invalid";

@@ -47,7 +47,7 @@ create table addresses (
 	state varchar(2) NOT NULL,
 	zip int NOT NULL,
 	FOREIGN KEY (userID) REFERENCES user(userID)  ON UPDATE CASCADE ON DELETE CASCADE
-)
+);
 
 create table transactions (
 	transationID int NOT NULL AUTO_INCREMENT Primary Key,
