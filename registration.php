@@ -4,10 +4,57 @@ require 'header.php';
 
 ?>
 
+
+<?php
+require 'config.php';
+
+session_start();
+
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true && isset($_SESSION["_username"])){
+    header("location: welcome.php?user=$_SESSION[_username]");
+    exit();
+}
+
+$_username = $_POST["username"];
+$_password = $_POST["password"];
+$email = $_POST["email"];
+$first_name = $_POST["first_name"];
+$last_name = $_POST["last_name"];
+$is_admin = 0;
+$error="";
+
+
+if(isset($_username) && isset($_password) && isset($email)&&isset($first_name)&&isset($last_name)) {
+$sql = "SELECT userID FROM user WHERE _username = '$_username'";
+$result = $conn->query($sql);
+echo $sql;
+
+if($result) {
+    $count = mysqli_num_rows($result);
+    echo $count;
+    if($count == 1) {
+
+        $error = "Username is Taken";
+    }
+    else{
+
+        $sql2 = "INSERT INTO user (_username, _password, email, first_name, last_name, is_admin) VALUES ('$_username', '$_password', '$email', '$first_name', '$last_name', $is_admin)";
+        $result2= $conn->query($sql2);
+
+        session_start();
+                $_SESSION["loggedin"] = true;
+                $_SESSION["_username"] = $_username;
+                header("location: welcome.php?user=$_SESSION[_username]");
+    }
+}
+}
+?>
+
 <div class="accountForm"> 
  <h4> Create an Account</h4>
 
 <form name="registration" action="registration.php" method="POST">
+    <p class="error"> <?php echo $error;?> </p>
     <div class="form-group">
         <label for="exampleInputEmail1">Username</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
@@ -46,50 +93,8 @@ require 'header.php';
 require 'footer.php'
 ?>
 
-<?php
-require 'config.php';
-
-session_start();
-
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true && isset($_SESSION["_username"])){
-    header("location: welcome.php?user=$_SESSION[_username]");
-    exit;
-}
-
-$_username = $_POST["username"];
-$_password = $_POST["password"];
-$email = $_POST["email"];
-$first_name = $_POST["first_name"];
-$last_name = $_POST["last_name"];
-$is_admin = 0;
-
-$sql = "SELECT userID FROM user WHERE _username = '$_username'";
-$result = $conn->query($sql);
-echo $sql;
-
-if($result) {
-    $count = mysqli_num_rows($result);
-    echo $count;
-    if($count == 1) {
-
-        $message = "Username is Taken";
-        echo "<script type='text/javascript'>window.alert('$message');</script>";
-
-    } else {
-
-        $sql2 = "INSERT INTO user (_username, _password, email, first_name, last_name, is_admin) VALUES ('$_username', '$_password', '$email', '$first_name', '$last_name', $is_admin)";
-        $result2= $conn->query($sql2);
-
-        session_start();
-                $_SESSION["loggedin"] = true;
-                $_SESSION["_username"] = $_username;
-                header("location: welcome.php?user=$_SESSION[_username]");
-    }
-}
 
 
-
-?>
 
 
 
