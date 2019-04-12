@@ -4,23 +4,21 @@ require 'header.php';
 
 ?>
 
-<?php
-require 'footer.php'
-?>
 
 <?php
 session_start();
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true && isset($_SESSION["_username"])){
-    header("location: welcome.php?user=$_SESSION[_username]");
+    header("location: MainProductsPage.php?user=$_SESSION[_username]");
     exit;
 }
 
 require 'config.php';
-// echo $_SESSION["_username"];
+$error = "";
 $_username = $_POST["username"];
 $_password = $_POST["password"];
 
+if(isset($_username)&&isset($_password)){
 $sql_exist = "SELECT userID FROM user WHERE _username = '$_username'";
 $result_exist  = $conn->query($sql_exist );
 echo $sql_exist;
@@ -37,32 +35,26 @@ if($result_exist){
             if($count == 1) {
                 $_SESSION["loggedin"] = true;
                 $_SESSION["_username"] = $_username;
-                header("location: welcome.php?user=$_SESSION[_username]");
+                header("location: MainProductsPage.php?user=$_SESSION[_username]");
 
             } else {
-                $message = "Your Login Name or Password is invalid";
-                echo "<script type='text/javascript'>window.alert('$message');</script>";
+                $error = "Your Login Name or Password is invalid";
             }
 
             } 
     }
     else {
-        $message1 = "No username found";
-        echo "<script type='text/javascript'>alert('$message1');</script>";
-
-      
+        $error = "No username found";
+    
     }
-}
-
-mysqli_close($conn);
-
+}}
 
 ?>
-
 <div class="accountForm"> 
  <h4> Log In</h4>
 
 <form name="login" action="login.php" method="POST">
+    <p class="error"> <?php echo $error;?> </p>
     <div class="form-group">
         <label for="exampleInputEmail1">Username</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
@@ -77,5 +69,12 @@ mysqli_close($conn);
     <div class="form-group">
         <p class="text-center"> or <br> Create an Account <a href="registration.php" id="login">Register Here!</a></p>
     </div>
+  
 </form>
+
 </div>
+<?php
+require 'footer.php'
+?>
+
+
