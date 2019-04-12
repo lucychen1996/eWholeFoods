@@ -14,14 +14,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit();
 }
-$_username = $_SESSION["_username"];
 
-echo "<h3>Welcome $_username </h3>";
-
-
-	echo "<br> PRODUCTS\n";
-
-	$sql_show_products = 'select productID, item_name, CONCAT(current_stock_quantity, " ", IF(unit = "weight","lb","units")), CONCAT(\'$\',price,\'/\',IF(unit = "weight","lb","unit")) from products';
+    $category = $_POST['category'];
+    echo $category;
+	$sql_show_products = "SELECT productID, item_name, CONCAT(current_stock_quantity, ' ', IF(unit = 'weight','lb','units')), CONCAT('$',price,'/',IF(unit = 'weight','lb','unit')) from products where category = '$category'";
 	
 	$result_show_products = $conn->query($sql_show_products);
 	if($result_show_products)
