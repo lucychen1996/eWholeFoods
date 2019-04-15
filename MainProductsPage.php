@@ -42,7 +42,8 @@ echo "<h3>Welcome $_username </h3>";
 					echo "<td>$value</td>";
 				}
 
-				echo "<td><a href='selectItem.php?id=".$row['productID']."'>Add to cart</a></td>";
+				// echo "<td><a href='selectItem.php?id=".$row['productID']."'>Add to cart</a></td>";
+				echo "<td><a href='selectItem.php?id=".$row['productID']."&user=$_username"."'>Add to cart</a></td>";
 
 				echo '</tr>';
 			}
@@ -53,6 +54,21 @@ echo "<h3>Welcome $_username </h3>";
 		echo "<br/>";
 
 	echo "<br>";
+	
+	// $sql_userID = "select userID from user where _username = '".$_GET['user']."';";
+	// $user_name = $_GET['user'];
+	// $_SESSION["user_name"] = $user_name;
+
+	// $result_userID = $conn->query($sql_userID);
+	// $userID = "";
+
+	// while($row = $result_userID->fetch_assoc())
+	// {
+	// 	foreach($row as $key=>$value)
+	// 	{
+	// 		$userID = $value;
+	// 	}
+	// }
 	
 	echo "<a href='viewCart.php'>View Shopping Cart</a>";
 

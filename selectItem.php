@@ -8,6 +8,11 @@ require 'header.php';
 	session_start();
 	require 'config.php';
 
+	$user_name = $_GET['user'];
+	echo "<a href='MainProductsPage.php?user=$user_name'>Return to Product Browsing</a>";
+	echo "<br>";
+	echo "<br>";
+
 	$productid = $_GET['id'];
 	$sql_item = "select item_name from products where productID = $productid;";
 
@@ -74,7 +79,6 @@ Quantity:
 <?php echo "<font color=\"red\">(Max quantity: $stock_quant)</font> <br>" ?>
 
 <?php 
-
 	if(intval($_POST["quantity"]) > $stock_quant)
 	{
 		echo "Quantity exceeds availability!";
@@ -89,6 +93,52 @@ Quantity:
 	}
 	else
 	{
+		$sql_userID = "select userID from user where _username = '".$_GET['user']."';";
+		$user_name = $_GET['user'];
+		$_SESSION["user_name"] = $user_name;
+
+		$result_userID = $conn->query($sql_userID);
+		$userID = "";
+
+		while($row = $result_userID->fetch_assoc())
+		{
+			foreach($row as $key=>$value)
+			{
+				$userID = $value;
+			}
+		}
+
+		$sql_if_new_cart = "select * from shopping_cart where userID = ".$userID.";";
+
+		$result_new_cart = $conn->query($sql_if_new_cart);
+
+		if(mysqli_num_rows($result_new_cart) == 0)
+		{
+
+			$sql_insert_new_cart = "insert into shopping_cart (userID) values ($userID);";
+			$result_insert_new_cart = $conn->query($sql_insert_new_cart);
+		}
+
+		$sql_get_cartID = "select shopping_cartID from shopping_cart where userID = $userID";
+
+		$result_cartID = $conn->query($sql_get_cartID);
+
+		$cartID = "";
+
+		while($row = $result_cartID->fetch_assoc())
+		{
+			foreach($row as $key=>$value)
+			{
+				$cartID = $value;
+			}
+		}
+
+		$_SESSION["cartID"] = $cartID;
+
+		$sql_add_item = "insert into cartItem (productID,quantity,shopping_cartID) values ($productid,".$_POST["quantity"].",$cartID);";
+
+		$result_additem = $conn->query($sql_add_item);
+
 		header('Location: MainProductsPage.php');
 	}
 ?>
@@ -97,6 +147,6 @@ Quantity:
 
 <?php
 
-require 'footer.php'
+require 'footer.php';
 
 ?>
