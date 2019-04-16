@@ -53,5 +53,68 @@ form {
     margin-right: auto;
 }
 
+#productnav {
+    display: inline;
+    display: block;
+    padding-top: 2%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2%;
+}
 
+.productbtn {
+    width: 10%;
+    height: 5em;
+    color: white;
+    background-color:rgba(2, 117, 41, 0.979);
+
+}
+/* .gallery {
+    display: inline;
+    display: block;
+    display: flex;
+    
+} */
+div.gallery {
+    margin-top: 10%;
+    border: 1px solid #ccc;
+    float: left;
+    width: 25%;
+    height: 400px;
+    display: inline;
+    display: block;
+    position: relative;
+  }
+  
+  div.gallery:hover {
+    border: 1px solid #777;
+  }
+  
+  div.gallery img {
+
+    width:90%;
+    height:40%;
+    justify-content: center;
+    display: block;
+    align-items: center;
+    align-content: center;
+    margin: auto;
+  }
+  
+  div.description {
+    padding: 5px;
+    text-align: center;
+    font-size: 18px;
+
+  }
+  .product {
+    width: 40%;
+    height: 200px;
+    display: block;
+    align-items: center;
+    align-content: center;
+    margin: auto;
+  }
 

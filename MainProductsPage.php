@@ -1,34 +1,25 @@
 <?php 
 
-require 'navbar.php';
-
-?>
-
-
-<?php
+require 'usernavbar.php';
 session_start();
 require 'config.php';
-
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit();
 }
-$_username = $_SESSION["_username"];
 
-echo "<h3>Welcome $_username </h3>";
+?>
 
 
-	echo "<br> PRODUCTS\n";
+<?php
 
-	$sql_show_products = 'select productID, item_name, CONCAT(current_stock_quantity, " ", IF(unit = "weight","lb","units")), CONCAT(\'$\',price,\'/\',IF(unit = "weight","lb","unit")) from products';
+	$sql_show_products = 'select productID, item_name, CONCAT(current_stock_quantity, " ", IF(unit = "weight","lb","units")), CONCAT(\'$\',price,\'/\',IF(unit = "weight","lb","unit")) as price, image from products';
 	
 	$result_show_products = $conn->query($sql_show_products);
 	if($result_show_products)
 		{
 			
-			echo "<table border=1px>";
-			echo '<tr> <td> <strong>Product ID</strong></td> <td> <strong>Product</strong> </td><td> <strong>Stock Quantity</strong> </td><td> <strong>Price </strong> </td></tr>';
 			while($row = $result_show_products->fetch_assoc())
 			{
 			
@@ -36,22 +27,16 @@ echo "<h3>Welcome $_username </h3>";
 				// $_SESSION['key_delete'] = $row['ID'];
 
 				// TODO: later
+				echo "<div class='gallery'> <img src='pictures/".$row['image']."' alt='strawberry'><br>";
+				echo "<div class='description'<p>".$row['item_name']."</p><br>";
+				echo "<p>".$row['price']."</p> <br>";
+				echo "<a href='selectItem.php?id=".$row['productID']."'>Add to cart</a>";
+				echo "</div></div>";
 
-				foreach($row as $key=>$value)
-				{
-					echo "<td>$value</td>";
-				}
-
-				// echo "<td><a href='selectItem.php?id=".$row['productID']."'>Add to cart</a></td>";
-				echo "<td><a href='selectItem.php?id=".$row['productID']."&user=$_username"."'>Add to cart</a></td>";
-
-				echo '</tr>';
 			}
 
-			echo "</table>";
 		}
 
-		echo "<br/>";
 
 	echo "<br>";
 	
@@ -70,7 +55,7 @@ echo "<h3>Welcome $_username </h3>";
 	// 	}
 	// }
 	
-	echo "<a href='viewCart.php'>View Shopping Cart</a>";
+	// echo "<a href='viewCart.php'>View Shopping Cart</a>";
 
 ?>
 
