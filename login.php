@@ -25,19 +25,24 @@ echo $sql_exist;
 if($result_exist){ 
     $count = mysqli_num_rows($result_exist);
     if($count == 1) {
-        $sql_authenticate = "SELECT userID FROM user WHERE _username = '$_username' AND _password = '$_password'";
+        $sql_authenticate = "SELECT userID, is_admin FROM user WHERE _username = '$_username' AND _password = '$_password'";
         $result_authenticate  = $conn->query($sql_authenticate );
         // echo $sql_authenticate ;
-
         if($result_authenticate ) {
             $count = mysqli_num_rows($result_authenticate );
             echo $count;
             if($count == 1) {
                 $_SESSION["loggedin"] = true;
                 $_SESSION["_username"] = $_username;
-                header("location: MainProductsPage.php?user=$_SESSION[_username]");
-
-            } else {
+                $row = $result_authenticate->fetch_assoc();
+                if($row['is_admin'] == 1){
+                    header("location: AdminHome.php?user=$_SESSION[_username]");
+                   }
+                else {
+                    header("location: MainProductsPage.php?user=$_SESSION[_username]");
+                } 
+            }
+            else {
                 $error = "Your Login Name or Password is invalid";
             }
 
