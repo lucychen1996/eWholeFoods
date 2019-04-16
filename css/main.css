@@ -82,7 +82,7 @@ div.gallery {
     border: 1px solid #ccc;
     float: left;
     width: 25%;
-    height: 400px;
+    height: 350px;
     display: inline;
     display: block;
     position: relative;
@@ -93,7 +93,7 @@ div.gallery {
   }
   
   div.gallery img {
-
+    padding-top: 5%;
     width:90%;
     height:40%;
     justify-content: center;
@@ -111,10 +111,11 @@ div.gallery {
   }
   .product {
     width: 40%;
-    height: 200px;
+    height: auto;
     display: block;
     align-items: center;
     align-content: center;
     margin: auto;
   }
+ 
 

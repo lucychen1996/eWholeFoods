@@ -21,12 +21,12 @@ require 'usernavbar.php';
 	if($result_item)
 	{
 		$row = $result_item->fetch_assoc();
-	
+		echo "<h4>".$row['item_name']."</h4><br>";
 		echo "<img class='product' src='pictures/".$row['image']."' alt='strawberry'><br>";
-		echo "<div class='description'<p>".$row['item_name']."</p><br>";
-		echo "<p>".$row['price']."</p> <br>";
-		echo "<p>".$row['nutrition_facts']."</p> <br>";
-		echo "</div>";
+		echo "<h6> Details:</h6>";
+		echo "<p>".$row['nutrition_facts']."</p>";
+		echo "<h6> Price:</h6>";
+		echo "<p>".$row['price']."/".$row['unit']."</p> <br>";
 		echo "<strong> Add ".$row['item_name']." to shopping cart </strong>";
 			
 		
@@ -74,8 +74,8 @@ require 'usernavbar.php';
 <?php echo '<form name="quantityForm" action="" method="POST">'; ?>
 Quantity:
 	<input type="text" name="quantity">
-	<?php if($unit == 'weight') { echo "lbs"; } else { echo "units\n"; } ?>
-	<input type = "submit" value = "submit">
+	<?php echo $unit;?>
+	<input type = "submit" value = "Add to Cart">
 	<?php echo "<br>"; ?>
 	</form>
 
