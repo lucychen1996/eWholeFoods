@@ -96,9 +96,8 @@ Quantity:
 	}
 	else
 	{
-		$sql_userID = "select userID from user where _username = '".$_GET['user']."';";
-		$user_name = $_GET['user'];
-		$_SESSION["user_name"] = $user_name;
+		$_username = $_SESSION["_username"];
+		$sql_userID = "select userID from user where _username = ".$_username.";";
 
 		$result_userID = $conn->query($sql_userID);
 		$userID = "";
@@ -114,8 +113,9 @@ Quantity:
 		$sql_if_new_cart = "select * from shopping_cart where userID = ".$userID.";";
 
 		$result_new_cart = $conn->query($sql_if_new_cart);
+		$count = mysqli_num_rows($result_new_cart);
 
-		if(mysqli_num_rows($result_new_cart) == 0)
+		if($count == 0)
 		{
 
 			$sql_insert_new_cart = "insert into shopping_cart (userID) values ($userID);";
