@@ -24,6 +24,7 @@
     justify-content: center;
     display: flex;
     align-items: center;
+    color:white;
 
 }
 #reg {
@@ -33,6 +34,7 @@
 
 #log {
     color:white;
+    background-color: green;
 }
 
 form {
@@ -130,4 +132,13 @@ div.gallery {
     margin: auto;
   }
  
-
+#imglist {
+    padding-top: 5%;
+    width:80%;
+    height:auto;
+    justify-content: center;
+    display: block;
+    align-items: center;
+    align-content: center;
+    margin: auto;
+}

@@ -20,10 +20,10 @@
                 <a href="logout.php">Sign Out &nbsp;&nbsp; <i style='font-size:24px' class='fas'>&#xf2f5;</i></a>
         </nav>
         <nav class="navbar navbar-dark bg-dark justify-content-between">
-                <a href="AdminHome.php" class="btn adminbtn" id="log">Main</a> 
-                <a href="allproducts.php" class="btn adminbtn" id="log">Products</a> 
-                <a href="Sales.php" class="btn adminbtn" id="log">Sales</a> 
-                <a href="allproducts.php" class="btn adminbtn" id="log">Users</a> 
+                <a href="AdminHome.php" class="btn adminbtn" >Main</a> 
+                <a href="allproducts.php" class="btn adminbtn" >Products</a> 
+                <a href="Sales.php" class="btn adminbtn" >Sales</a> 
+                <a href="allproducts.php" class="btn adminbtn">Users</a> 
 
         </nav>
         <div class="container">
