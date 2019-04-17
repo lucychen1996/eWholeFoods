@@ -52,7 +52,6 @@ require 'config.php';
 			$result_remove = $conn->query($sql_remove);
 			// echo "here";
 
-
 			if($result_remove)
 			{
 				echo "worked";
