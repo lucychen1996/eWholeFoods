@@ -139,6 +139,10 @@ Quantity:
 
 		$result_additem = $conn->query($sql_add_item);
 
+		$sql_update_stock = "update products set current_stock_quantity = current_stock_quantity - ".$_POST["quantity"]." where productID = $productid;";
+
+		$result_update_stock = $conn->query($sql_update_stock);
+
 		header('Location: MainProductsPage.php');
 	}
 ?>

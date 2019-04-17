@@ -21,7 +21,7 @@ echo "<h3>Welcome $_username </h3>";
 
 	echo "<br> PRODUCTS\n";
 
-	$sql_show_products = 'select productID, item_name, CONCAT(current_stock_quantity, " ", IF(unit = "weight","lb","units")), CONCAT(\'$\',price,\'/\',IF(unit = "weight","lb","unit")) from products';
+	$sql_show_products = 'select productID, item_name, CONCAT(current_stock_quantity, " ", IF(unit = "weight","lb","units")), CONCAT(\'$\',ROUND(price,2),\'/\',IF(unit = "weight","lb","unit")) from products';
 	
 	$result_show_products = $conn->query($sql_show_products);
 	if($result_show_products)
@@ -69,7 +69,7 @@ echo "<h3>Welcome $_username </h3>";
 	// 		$userID = $value;
 	// 	}
 	// }
-	
+
 	echo "<a href='viewCart.php'>View Shopping Cart</a>";
 
 ?>
