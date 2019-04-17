@@ -37,24 +37,27 @@ if(isset($cartID) && isset($_street) && isset($_city)&&isset($_state)&&isset($_z
     $row_address = $result_address->fetch_assoc();
     $addressID = $row_address['addressID'];
     $order_date = date('Y-m-d H:i:s');
+    
 
  
     $sql_transaction = "INSERT INTO transactions (userID, shopping_cartID, addressID, total, order_date) VALUES ('$_userID','$cartID','$addressID','$total','$order_date')";
     $result_transaction = $conn->query($sql_transaction);
+
+
+
     if($result_transaction){
   
-        echo"CONFIRMED";
+    echo"CONFIRMED";
+        $sql_insert_new_cart = "insert into shopping_cart (userID) values ($_userID);";
+        $result_insert_new_cart = $conn->query($sql_insert_new_cart);
+        $sql_select_new_cart = "SELECT shopping_cartID FROM shopping_cart WHERE shopping_cartID NOT IN (SELECT shopping_cartID FROM transactions WHERE userID = '$_userID') ";
+        $result_select_new_cart = $conn->query($sql_select_new_cart);
+        $row = $result_select_new_cart->fetch_assoc();
+        $new_cartID = $row['shopping_cartID'];
+        $_SESSION["cartID"] = $new_cartID;
 
-			$sql_insert_new_cart = "insert into shopping_cart (userID) values ($_userID);";
-            $result_insert_new_cart = $conn->query($sql_insert_new_cart);
-            $sql_select_new_cart = "SELECT shopping_cartID FROM shopping_cart WHERE shopping_cartID NOT IN (SELECT shopping_cartID FROM transactions WHERE userID = '$_userID') ";
-            $result_select_new_cart = $conn->query($sql_select_new_cart);
-            $row = $result_cart_total->fetch_assoc();
 
-	        $new_cartID = $row['shopping_cartID'];
-            $_SESSION["cartID"] = $new_cartID;
         echo "<a href='MainProductsPage.php?'> Go Back to Shopping </a>";
-
     }
 
     

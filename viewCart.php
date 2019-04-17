@@ -2,21 +2,22 @@
 
 require 'usernavbar.php';
 
+session_start();
+require 'config.php';
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+	header("location: login.php");
+	exit();
+}
+
 ?>
 
 <?php
 
-	session_start();
-	require 'config.php';
-
-	// Check if the user is logged in, if not then redirect him to login page
-	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-	    header("location: login.php");
-	    exit();
-	}
-
 	echo "<h3>Current Shopping Cart </h3>";
 	$_username = $_SESSION["_username"];
+	$_userID = $_SESSION["_userID"];
 	$cartID = $_SESSION["cartID"];
 
 	$sql_show_cart = "select cartItem.cartID, products.item_name, cartItem.quantity, ROUND(cartItem.quantity*products.price,2) from products join cartItem on products.productID = cartItem.productID where cartItem.shopping_cartID = $cartID;";
@@ -52,7 +53,7 @@ require 'usernavbar.php';
 
 	echo "<a href='MainProductsPage.php?user=".$_username."'> Continue Browsing </a>";
 	echo "<br>";
-	echo "<a href='checkout.php?cartID=$cartID'> Proceed to Checkout </a>";
+	echo "<a href='checkout.php'> Proceed to Checkout </a>";
 ?>
 
 <?php

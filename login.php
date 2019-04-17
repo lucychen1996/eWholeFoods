@@ -34,12 +34,35 @@ if($result_exist){
                 $row = $result_authenticate->fetch_assoc();
                 $_SESSION["loggedin"] = true;
                 $_SESSION["_username"] = $_username;
+                $_userID = $row['userID'];
                 $_SESSION["_userID"] = $row['userID'];
               
                 if($row['is_admin'] == 1){
                     header("location: AdminHome.php?user=$_SESSION[_username]");
                    }
                 else {
+                    // $sql_cart = "SELECT shopping_cartID FROM shopping_cart WHERE shopping_cartID NOT IN (SELECT shopping_cartID FROM transactions WHERE userID = '$_userID' ) ";
+                    // $result_cart = $conn->query($sql_cart);
+                    // $count = mysqli_num_rows($result_cart);
+                    // if($count == 0)
+                    // {
+                    //     $sql_insert_new_cart = "insert into shopping_cart (userID) values ($_userID);";
+                    //     $result_insert_new_cart = $conn->query($sql_insert_new_cart);
+
+                    //     $sql_select_new_cart = "SELECT shopping_cartID FROM shopping_cart WHERE shopping_cartID NOT IN (SELECT shopping_cartID FROM transactions WHERE userID = '$_userID' ) ";
+                    //     $result_select_new_cart = $conn->query($sql_select_new_cart);
+                        
+                    //     $row = $result_select_new_cart->fetch_assoc();
+                    //     $cartID = $row['shopping_cartID'];
+                    //     $_SESSION["cartID"] = $new_cartID;
+                    // }
+                    // else {
+                    //     $row = $result_cart->fetch_assoc();
+                    //     $_SESSION["cartID"]= $row['shopping_cartID'];
+                    // }
+                    // echo $_SESSION["cartID"];
+ 
+
                     header("location: MainProductsPage.php?user=$_SESSION[_username]");
                 } 
             }
