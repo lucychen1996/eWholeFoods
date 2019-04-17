@@ -23,7 +23,7 @@
                 <a href="AdminHome.php" class="btn adminbtn" >Main</a> 
                 <a href="allproducts.php" class="btn adminbtn" >Products</a> 
                 <a href="Sales.php" class="btn adminbtn" >Sales</a> 
-                <a href="allproducts.php" class="btn adminbtn">Users</a> 
+                <a href="Users.php" class="btn adminbtn">Customers</a> 
 
         </nav>
         <div class="container">

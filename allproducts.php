@@ -11,6 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 ?>
 
+<h3>Products</h3>
 <a href="addproduct.php" class="btn addbtn">Add New Product</a> 
 
 
@@ -34,7 +35,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 echo "<td>".$row['unit']."</td>";
                 echo "<td>".$row['nutrition_facts']."</td>";
                 echo "<td>".$row['category']."</td>";
-                echo "<td><a href='editproduct.php?id=".$row['productID']."'class='btn updatebtn'>Update Product</a><br><a href='deleteproduct.php?id=".$row['productID']."'class='btn updatebtn'>DeleteProduct</a></td>";
+                echo "<td><a href='editproduct.php?id=".$row['productID']."'class='btn updatebtn'>Update Product</a><br><a href='deleteproduct.php?id=".$row['productID']."'class='btn updatebtn'>Delete Product</a></td>";
                 echo "</tr>";
 
             }
