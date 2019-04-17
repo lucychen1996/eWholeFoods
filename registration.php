@@ -44,7 +44,7 @@ if($result) {
         session_start();
                 $_SESSION["loggedin"] = true;
                 $_SESSION["_username"] = $_username;
-                header("location: welcome.php?user=$_SESSION[_username]");
+                header("location: MainProductsPage.php?user=$_SESSION[_username]");
     }
 }
 }
