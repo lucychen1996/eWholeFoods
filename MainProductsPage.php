@@ -1,6 +1,6 @@
 <?php 
 
-require 'navbar.php';
+require 'usernavbar.php';
 
 ?>
 

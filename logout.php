@@ -4,6 +4,6 @@
    session_destroy();
    $_SESSION["loggedin"] = NULL;
    $_SESSION["_username"] = NULL;
-   header("location:home.php");
+   header("location:login.php");
    exit();
 ?>

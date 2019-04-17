@@ -1,9 +1,8 @@
 <?php 
 
-require 'navbar.php';
+require 'usernavbar.php';
 
 ?>
-
 
 <?php
 session_start();
@@ -15,43 +14,35 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit();
 }
 
-    $category = $_POST['category'];
-    echo $category;
-	$sql_show_products = "SELECT productID, item_name, CONCAT(current_stock_quantity, ' ', IF(unit = 'weight','lb','units')), CONCAT('$',price,'/',IF(unit = 'weight','lb','unit')) from products where category = '$category'";
-	
+if (isset($_POST['search'])){
+	$_keyword = $_POST["search"];
+	$sql_show_products = "SELECT productID, item_name, CONCAT('$',price,'/',unit) as price, image from products where item_name like '%$_keyword%'";
+
+}
+else{
+	$category = $_POST['category'];
+	if($category == 'All'){
+		header("location: MainProductsPage.php?user=$_SESSION[_username]");
+	}
+	else {
+	$sql_show_products = "SELECT productID, item_name, CONCAT('$',price,'/',unit) as price, image from products where category = '$category'";
+	}
+}	
 	$result_show_products = $conn->query($sql_show_products);
 	if($result_show_products)
 		{
-			
-			echo "<table border=1px>";
-			echo '<tr> <td> <strong>Product ID</strong></td> <td> <strong>Product</strong> </td><td> <strong>Stock Quantity</strong> </td><td> <strong>Price </strong> </td></tr>';
 			while($row = $result_show_products->fetch_assoc())
 			{
-			
 
-				// $_SESSION['key_delete'] = $row['ID'];
+				echo "<div class='gallery'> <img class='product' src='pictures/".$row['image']."' alt='strawberry'>";
+				echo "<div class='description'<p>".$row['item_name']."</p>";
+				echo "<p>".$row['price']."</p>";
+				echo "<a href='selectItem.php?id=".$row['productID']."'>Add to cart</a>";
+				echo "</div></div>";
 
-				// TODO: later
-
-				foreach($row as $key=>$value)
-				{
-					echo "<td>$value</td>";
-				}
-
-				echo "<td><a href='selectItem.php?id=".$row['productID']."'>Add to cart</a></td>";
-
-				echo '</tr>';
 			}
-
-			echo "</table>";
 		}
-
-		echo "<br/>";
-
-	echo "<br>";
 	
-	echo "<a href='viewCart.php'>View Shopping Cart</a>";
-
 ?>
 
 <?php

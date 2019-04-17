@@ -1,6 +1,6 @@
 <?php 
 
-require 'header.php';
+require 'usernavbar.php';
 
 ?>
 
@@ -8,25 +8,28 @@ require 'header.php';
 	session_start();
 	require 'config.php';
 
-	$user_name = $_GET['user'];
+	$user_name = $_SESSION["_username"];
 	echo "<a href='MainProductsPage.php?user=$user_name'>Return to Product Browsing</a>";
 	echo "<br>";
 	echo "<br>";
 
 	$productid = $_GET['id'];
-	$sql_item = "select item_name from products where productID = $productid;";
+	$sql_item = "select * from products where productID = $productid;";
 
 	$result_item = $conn->query($sql_item);
 
 	if($result_item)
 	{
-		while($row = $result_item->fetch_assoc())
-		{
-			foreach($row as $key=>$value)
-			{
-				echo "<strong> Add $value to shopping cart </strong>";
-			}
-		}
+		$row = $result_item->fetch_assoc();
+		echo "<h4>".$row['item_name']."</h4><br>";
+		echo "<img class='product' src='pictures/".$row['image']."' alt='strawberry'><br>";
+		echo "<h6> Details:</h6>";
+		echo "<p>".$row['nutrition_facts']."</p>";
+		echo "<h6> Price:</h6>";
+		echo "<p>".$row['price']."/".$row['unit']."</p> <br>";
+		echo "<strong> Add ".$row['item_name']." to shopping cart </strong>";
+			
+		
 	}
 
 	$sql_stock_quant = "select current_stock_quantity from products where productID = $productid;";
@@ -71,8 +74,8 @@ require 'header.php';
 <?php echo '<form name="quantityForm" action="" method="POST">'; ?>
 Quantity:
 	<input type="text" name="quantity">
-	<?php if($unit == 'weight') { echo "lbs"; } else { echo "units\n"; } ?>
-	<input type = "submit" value = "submit">
+	<?php echo $unit;?>
+	<input type = "submit" value = "Add to Cart">
 	<?php echo "<br>"; ?>
 	</form>
 

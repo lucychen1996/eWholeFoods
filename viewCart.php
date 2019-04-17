@@ -1,6 +1,6 @@
 <?php
 
-require 'header.php';
+require 'usernavbar.php';
 
 ?>
 
@@ -34,22 +34,25 @@ require 'header.php';
 		}
 	}
 
-	$sql_show_cart = "select products.item_name, cartItem.quantity, ROUND(cartItem.quantity*products.price,2) from products join cartItem on products.productID = cartItem.productID where cartItem.shopping_cartID = $cartID;";
+	$sql_show_cart = "select cartItem.cartID, products.item_name, cartItem.quantity, ROUND(cartItem.quantity*products.price,2) from products join cartItem on products.productID = cartItem.productID where cartItem.shopping_cartID = $cartID;";
 
 	$result_show_cart = $conn->query($sql_show_cart);
+
+	echo $cartID;
 
 	if($result_show_cart)
 	{
 		echo "<table border=1px>";
-		echo '<tr> <td> <strong> Product </strong> </td> <td> <strong> Quantity </strong> </td> <td> <strong> Total Cost </strong> </td> </tr>';
+		echo '<tr> <td> <strong> CartID </strong> </td> <td> <strong> Product </strong> </td> <td> <strong> Quantity </strong> </td> <td> <strong> Total Cost </strong> </td> </tr>';
 		while($row = $result_show_cart->fetch_assoc())
 		{
 			foreach($row as $key=>$value)
 			{
 				echo "<td>$value</td>";
 			}
-			$product = $row['product_name'];
-			echo "<td><a href = 'deleteItem.php?cartid=$cartID&product=$product'>Delete Item</a></td>";
+			$product = $row['item_name'];
+			$item_in_cart = $row['cartID'];
+			echo "<td><a href = 'deleteItem.php?shoppingcartid=".$cartID."&cartid=".$item_in_cart."&product=$product'>Delete Item</a></td>";
 			echo "</tr>";
 		}
 
