@@ -38,4 +38,3 @@
                 <input type="submit" value="Snacks" name="category"class="productbtn">
             </form>
         <div class="container">
-
