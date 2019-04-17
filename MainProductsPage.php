@@ -14,7 +14,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <?php
 
-	$sql_show_products = 'select productID, item_name, CONCAT(current_stock_quantity, " ", IF(unit = "weight","lb","units")), CONCAT(\'$\',price,\'/\',IF(unit = "weight","lb","unit")) as price, image from products';
+	$sql_show_products = 'select productID, item_name, CONCAT(\'$\',price,\'/\', unit) as price, image from products';
 	
 	$result_show_products = $conn->query($sql_show_products);
 	if($result_show_products)
@@ -27,9 +27,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				// $_SESSION['key_delete'] = $row['ID'];
 
 				// TODO: later
-				echo "<div class='gallery'> <img src='pictures/".$row['image']."' alt='strawberry'><br>";
-				echo "<div class='description'<p>".$row['item_name']."</p><br>";
-				echo "<p>".$row['price']."</p> <br>";
+				echo "<div class='gallery'> <img src='pictures/".$row['image']."' alt='strawberry'>";
+				echo "<div class='description'<p>".$row['item_name']."</p>";
+				echo "<p>".$row['price']."</p>";
 				echo "<a href='selectItem.php?id=".$row['productID']."'>Add to cart</a>";
 				echo "</div></div>";
 
@@ -37,9 +37,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 		}
 
-
-	echo "<br>";
-	
 	// $sql_userID = "select userID from user where _username = '".$_GET['user']."';";
 	// $user_name = $_GET['user'];
 	// $_SESSION["user_name"] = $user_name;

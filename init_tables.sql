@@ -19,7 +19,7 @@ create table products (
 	current_stock_quantity int NOT NULL,
 	price float(25) NOT NULL,
 	nutrition_facts varchar(1000) NOT NULL,
-	unit varchar(100) NOT NULL,
+	item varchar(100) NOT NULL,
 	category varchar(100) NOT NULL,
 	image varchar(100) NOT NULL
 );

@@ -74,7 +74,6 @@ if($result_exist){
     <div class="form-group">
         <p class="text-center"> or <br> Create an Account <a href="registration.php" id="login">Register Here!</a></p>
     </div>
-  
 </form>
 
 </div>
