@@ -27,6 +27,7 @@ $error="";
 if(isset($_username) && isset($_password) && isset($email)&&isset($first_name)&&isset($last_name)) {
 $sql = "SELECT userID FROM user WHERE _username = '$_username'";
 $result = $conn->query($sql);
+
 echo $sql;
 
 if($result) {
@@ -40,10 +41,11 @@ if($result) {
 
         $sql2 = "INSERT INTO user (_username, _password, email, first_name, last_name, is_admin) VALUES ('$_username', '$_password', '$email', '$first_name', '$last_name', $is_admin)";
         $result2= $conn->query($sql2);
-
         session_start();
                 $_SESSION["loggedin"] = true;
                 $_SESSION["_username"] = $_username;
+
+             
                 header("location: MainProductsPage.php?user=$_SESSION[_username]");
     }
 }

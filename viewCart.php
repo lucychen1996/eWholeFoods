@@ -17,28 +17,11 @@ require 'usernavbar.php';
 
 	echo "<h3>Current Shopping Cart </h3>";
 	$_username = $_SESSION["_username"];
-
-	$sql_shoppingcart_ID = "select shopping_cart.shopping_cartID from shopping_cart join user on shopping_cart.userID = user.userID where user._username = '".$_username."';";
-	$result_shoppingcart_ID = $conn->query($sql_shoppingcart_ID);
-
-	$cartID = 999;
-
-	if($result_shoppingcart_ID)
-	{
-		while($row = $result_shoppingcart_ID->fetch_assoc())
-		{
-			foreach($row as $key=>$value)
-			{
-				$cartID = $value;
-			}
-		}
-	}
+	$cartID = $_SESSION["cartID"];
 
 	$sql_show_cart = "select cartItem.cartID, products.item_name, cartItem.quantity, ROUND(cartItem.quantity*products.price,2) from products join cartItem on products.productID = cartItem.productID where cartItem.shopping_cartID = $cartID;";
 
 	$result_show_cart = $conn->query($sql_show_cart);
-
-	echo $cartID;
 
 	if($result_show_cart)
 	{
@@ -58,13 +41,18 @@ require 'usernavbar.php';
 
 		echo "</table>";
 	}
+	$sql_cart_total = "SELECT round(SUM(price*quantity),2) as total FROM products, cartItem WHERE products.productID = cartItem.productID AND cartItem.shopping_cartID = '$cartID'";
+	$result_cart_total = $conn->query($sql_cart_total);
+	
+	$row = $result_cart_total->fetch_assoc();
+	echo "Total: ".$row['total'];
 
 	echo "<br>";
 	echo "<br>";
 
 	echo "<a href='MainProductsPage.php?user=".$_username."'> Continue Browsing </a>";
 	echo "<br>";
-	echo "<a href='checkout.php'> Proceed to Checkout </a>";
+	echo "<a href='checkout.php?cartID=$cartID'> Proceed to Checkout </a>";
 ?>
 
 <?php

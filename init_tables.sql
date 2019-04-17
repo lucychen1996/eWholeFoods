@@ -60,3 +60,7 @@ create table transactions (
 	FOREIGN KEY (shopping_cartID) REFERENCES shopping_cart(shopping_cartID)  ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY (addressID) REFERENCES addresses(addressID)  ON UPDATE CASCADE ON DELETE CASCADE 
 );
+create table orderHistory (
+	orderID int NOT NULL AUTO_INCREMENT Primary key,
+	
+)

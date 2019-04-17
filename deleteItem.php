@@ -34,18 +34,25 @@ require 'config.php';
 
 			$sql_quantity = "select quantity from cartItem where cartID = $item_in_cart";
 			$result_quantity = $conn->query($sql_quantity);
-			$quantity = 0;
+			if($result_quantity) {
+				$row = $result_quantity->fetch_assoc();
+				$quantity = $row['quantity'];
 
-			while($row = $result_quantity->fetch_assoc())
-			{
-				foreach($row as $key=>$value)
-				{
-					$quantity = $value;
-				}
 			}
-
-			$sql_update_stock = "update products set current_stock_quantity = current_stock_quantity + $quantity where item_name = $product;";
+	
+			echo $quantity;
+			echo $product_name;
+			$sql_update_stock = "update products set current_stock_quantity = current_stock_quantity + '$quantity' where item_name = '$product_name';";
+		
 			$result_update_stock = $conn->query($sql_update_stock);
+
+			// if($result_update_stock){
+			// 	echo "yes";
+			// }
+			// else {
+			// 	echo "no";
+			// }
+			
 
 			$sql_remove = "delete from cartItem where shopping_cartID = $shoppingcartid and cartID = $item_in_cart;";
 			// echo $sql_remove;

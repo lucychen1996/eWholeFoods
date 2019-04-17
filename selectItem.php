@@ -100,43 +100,40 @@ Quantity:
 		$sql_userID = "select userID from user where _username = ".$_username.";";
 
 		$result_userID = $conn->query($sql_userID);
-		$userID = "";
+		$_userID = "";
 
 		while($row = $result_userID->fetch_assoc())
 		{
 			foreach($row as $key=>$value)
 			{
-				$userID = $value;
+				$_userID = $value;
 			}
 		}
 
-		$sql_if_new_cart = "select * from shopping_cart where userID = ".$userID.";";
+		// $sql_if_new_cart = "select * from shopping_cart where userID = ".$userID.";";
 
-		$result_new_cart = $conn->query($sql_if_new_cart);
-		$count = mysqli_num_rows($result_new_cart);
+		// $result_new_cart = $conn->query($sql_if_new_cart);
+		// $count = mysqli_num_rows($result_new_cart);
 
-		if($count == 0)
-		{
+		// if($count == 0)
+		// {
 
-			$sql_insert_new_cart = "insert into shopping_cart (userID) values ($userID);";
+		// 	$sql_insert_new_cart = "insert into shopping_cart (userID) values ($userID);";
+		// 	$result_insert_new_cart = $conn->query($sql_insert_new_cart);
+		// }
+		$cartID = $_SESSION["cartID"];
+		if($cartID==""){
+			$sql_insert_new_cart = "insert into shopping_cart (userID) values ($_userID);";
 			$result_insert_new_cart = $conn->query($sql_insert_new_cart);
+
+			$sql_select_new_cart = "SELECT shopping_cartID FROM shopping_cart WHERE shopping_cartID NOT IN (SELECT shopping_cartID FROM transactions WHERE userID = '$_userID') ";
+			$result_select_new_cart = $conn->query($sql_select_new_cart);
+			
+            $row = $result_cart_total->fetch_assoc();
+			$new_cartID = $row['shopping_cartID'];
+			$_SESSION["cartID"] = $new_cartID;
 		}
-
-		$sql_get_cartID = "select shopping_cartID from shopping_cart where userID = $userID";
-
-		$result_cartID = $conn->query($sql_get_cartID);
-
-		$cartID = "";
-
-		while($row = $result_cartID->fetch_assoc())
-		{
-			foreach($row as $key=>$value)
-			{
-				$cartID = $value;
-			}
-		}
-
-		$_SESSION["cartID"] = $cartID;
+       
 
 		$sql_add_item = "insert into cartItem (productID,quantity,shopping_cartID) values ($productid,".$_POST["quantity"].",$cartID);";
 
@@ -146,7 +143,7 @@ Quantity:
 
 		$result_update_stock = $conn->query($sql_update_stock);
 
-		header('Location: MainProductsPage.php');
+		header('Location: MainProductsPage.php');	
 	}
 ?>
 

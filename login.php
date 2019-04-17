@@ -21,7 +21,6 @@ $_password = $_POST["password"];
 if(isset($_username)&&isset($_password)){
 $sql_exist = "SELECT userID FROM user WHERE _username = '$_username'";
 $result_exist  = $conn->query($sql_exist );
-echo $sql_exist;
 if($result_exist){ 
     $count = mysqli_num_rows($result_exist);
     if($count == 1) {
@@ -30,11 +29,13 @@ if($result_exist){
         // echo $sql_authenticate ;
         if($result_authenticate ) {
             $count = mysqli_num_rows($result_authenticate );
-            echo $count;
+          
             if($count == 1) {
+                $row = $result_authenticate->fetch_assoc();
                 $_SESSION["loggedin"] = true;
                 $_SESSION["_username"] = $_username;
-                $row = $result_authenticate->fetch_assoc();
+                $_SESSION["_userID"] = $row['userID'];
+              
                 if($row['is_admin'] == 1){
                     header("location: AdminHome.php?user=$_SESSION[_username]");
                    }
