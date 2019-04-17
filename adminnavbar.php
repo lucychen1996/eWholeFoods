@@ -14,10 +14,17 @@
 
 	</head>
 	<body>
-        <nav class="navbar navbar-light bg-light justify-content-between" id="mainnav">
+        <nav class="navbar navbar-light bg-light justify-content-between">
                 <a class="navbar-brand">eWholeFoods</a>
-                <h3>Administation Page</h3>
+                <h3>Administration Account</h3>
                 <a href="logout.php">Sign Out &nbsp;&nbsp; <i style='font-size:24px' class='fas'>&#xf2f5;</i></a>
+        </nav>
+        <nav class="navbar navbar-dark bg-dark justify-content-between">
+                <a href="AdminHome.php" class="btn adminbtn" id="log">Main</a> 
+                <a href="allproducts.php" class="btn adminbtn" id="log">Products</a> 
+                <a href="Sales.php" class="btn adminbtn" id="log">Sales</a> 
+                <a href="allproducts.php" class="btn adminbtn" id="log">Users</a> 
+
         </nav>
         <div class="container">
 

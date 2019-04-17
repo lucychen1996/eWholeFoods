@@ -7,7 +7,25 @@
     margin-bottom: 5%;
 
 }
+.addbtn{
+    display: block;
+    width: 20%;
+    margin: 5% 0%;
+    color:white;
+    background-color: green;
 
+}
+.adminbtn {
+
+    display: inline;
+    width: 20%;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+
+}
 #reg {
     color:white;
     background-color: navy;
@@ -15,7 +33,6 @@
 
 #log {
     color:white;
-    background-color: green;
 }
 
 form {
@@ -71,12 +88,7 @@ form {
     background-color:rgba(2, 117, 41, 0.979);
 
 }
-/* .gallery {
-    display: inline;
-    display: block;
-    display: flex;
-    
-} */
+
 div.gallery {
     margin-top: 10%;
     border: 1px solid #ccc;
