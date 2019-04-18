@@ -12,9 +12,10 @@ require 'config.php';
 
 $_productID = $_GET["id"];
 
-  
-    $sql_get = "SELECT * FROM products WHERE productID = '$_productID'";
+
+    $sql_get = "SELECT products.*, categories.category_name as categoryname FROM products JOIN categories ON products.category = categories.categoryID WHERE productID = '$_productID'";
     $result_get  = $conn->query($sql_get);
+
     if($result_get) {
         $row = $result_get->fetch_assoc();
 
@@ -24,8 +25,9 @@ $_productID = $_GET["id"];
         $_price = $row["price"];
         $_nutrition_facts = $row["nutrition_facts"];
         $_unit = $row["unit"];
-        $_category = $row['category'];
-        $_category = $row['category'];
+        $_category = $row["categoryname"];
+y;
+
 
     }
     else {

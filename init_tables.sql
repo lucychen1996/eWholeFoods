@@ -20,8 +20,9 @@ create table products (
 	price float(25) NOT NULL,
 	nutrition_facts varchar(1000) NOT NULL,
 	item varchar(100) NOT NULL,
-	category varchar(100) NOT NULL,
+	category int NOT NULL,
 	image varchar(100) NOT NULL
+	FOREIGN KEY (category) REFERENCES categories(categoryID)  ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
 create table shopping_cart (
@@ -60,7 +61,8 @@ create table transactions (
 	FOREIGN KEY (shopping_cartID) REFERENCES shopping_cart(shopping_cartID)  ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY (addressID) REFERENCES addresses(addressID)  ON UPDATE CASCADE ON DELETE CASCADE 
 );
-create table orderHistory (
-	orderID int NOT NULL AUTO_INCREMENT Primary key,
+create table categories (
+	categoryID int NOT NULL AUTO_INCREMENT Primary key,
+	category_name VARCHAR(100) NOT NULL
 	
 )

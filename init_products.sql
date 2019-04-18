@@ -14,3 +14,22 @@ insert into products (item_name, current_stock_quantity, price, nutrition_facts,
 
 insert into products (item_name, current_stock_quantity, price, nutrition_facts, unit,category,image)
 	values ('White Rice', 20, 19.99, 'Calories: 170, Total fat: 0 g, Cholesterol: 0 g, Sodium: 0 g, Carbohydrates: 39 mg, Protein: 3 g', 'unit','Grain','whiterice.jpg');
+	
+insert into categories (category_name)
+	values ('Fruit');
+insert into categories (category_name)
+	values ('Vegetable');
+insert into categories (category_name)
+	values ('Meat');
+insert into categories (category_name)
+	values ('Dairy');
+insert into categories (category_name)
+	values ('Grain');
+insert into categories (category_name)
+	values ('Frozen');
+insert into categories (category_name)
+	values ('Beverage');
+insert into categories (category_name)
+	values ('Bakery');
+insert into categories (category_name)
+	values ('Snacks');

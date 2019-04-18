@@ -42,8 +42,12 @@ if(isset($_product_name)&&isset($_stock_quantity)){
         }
      }    
 
+    $sql_categoryID = "SELECT categoryID FROM categories WHERE category_name = '$_category'";
+    $result_categoryID = $conn->query($sql_categoryID);
+    $row = $result_categoryID-> fetch_assoc();
+    $_categoryID = $row['categoryID'];
     $sql_add = "insert into products (item_name, current_stock_quantity, price, nutrition_facts, unit, category, image) 
-    values ('$_product_name', '$_stock_quantity','$_price','$_nutrition_facts','$_unit','$_category','$file_name')";
+    values ('$_product_name', '$_stock_quantity','$_price','$_nutrition_facts','$_unit','$_categoryID','$file_name')";
     $result_add  = $conn->query($sql_add);
     if($result_add ) {
             $status = "".$_product_name." Successfully Added";

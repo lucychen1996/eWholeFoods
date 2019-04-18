@@ -59,7 +59,7 @@ $result_top_seller = $conn->query($sql_top_seller);
 	
 
 
-$sql_show_products = 'select productID, item_name, CONCAT(\'$\',price,\'/\', unit) as price, image from products';
+$sql_show_products = 'select productID, item_name, CONCAT(\'$\',price,\'/\', unit) as price, image from products ORDER BY item_name';
 	
 $result_show_products = $conn->query($sql_show_products);
 if($result_show_products)
