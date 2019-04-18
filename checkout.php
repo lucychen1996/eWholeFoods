@@ -95,7 +95,7 @@ require 'config.php';
     </div>
     <div class="form-group">
         <label>Expiration Date</label>
-        <input type="number" class="form-control" id="expiration_date" name="expiration_date" placeholder="Enter Expiration Date" required>
+        <input type="date" class="form-control" id="expiration_date" name="expiration_date" placeholder="Enter Expiration Date" required>
     </div>
     <div class="form-group">
         <label for="exampleInputPassword1">Full Name on Card</label>

@@ -44,7 +44,11 @@ $cartID = $_SESSION["cartID"];
 
 $sql_top_seller = "SELECT * FROM products WHERE productID = (SELECT b.productID FROM(SELECT MAX(number), productID FROM (SELECT COUNT(*) as number, productID FROM cartItem WHERE shopping_cartID IN (SELECT shopping_cartID FROM transactions) GROUP BY productID ORDER BY number DESC)as a) as b)";
 $result_top_seller = $conn->query($sql_top_seller);
-	
+$count = mysqli_num_rows($result_top_seller);
+if($count==0){
+
+}
+else{
 	echo "<h3 id='center'>TOP SELLER</h3>";
 	$row = $result_top_seller->fetch_assoc();
 	echo "<div class='topseller'> <img src='pictures/".$row['image']."' alt='strawberry'>";
@@ -52,13 +56,8 @@ $result_top_seller = $conn->query($sql_top_seller);
 	echo "<p>".$row['price']."</p>";
 	echo "<a href='selectItem.php?id=".$row['productID']."'>Add to cart</a>";
 	echo "</div></div>";
+}
 	
-	
-
-			
-	
-
-
 $sql_show_products = 'select productID, item_name, CONCAT(\'$\',price,\'/\', unit) as price, image from products ORDER BY item_name';
 	
 $result_show_products = $conn->query($sql_show_products);

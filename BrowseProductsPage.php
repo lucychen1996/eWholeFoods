@@ -36,7 +36,7 @@ else{
 			while($row = $result_show_products->fetch_assoc())
 			{
 
-				echo "<div class='gallery'> <img class='product' src='pictures/".$row['image']."' alt='strawberry'>";
+				echo "<div class='gallery'> <img class='product' src='pictures/".$row['image']."' alt='".$row['item_name']."'>";
 				echo "<div class='description'<p>".$row['item_name']."</p>";
 				echo "<p>".$row['price']."</p>";
 				echo "<a href='selectItem.php?id=".$row['productID']."'>Add to cart</a>";

@@ -20,20 +20,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	$_userID = $_SESSION["_userID"];
 	$cartID = $_SESSION["cartID"];
 
-	$sql_show_cart = "select cartItem.cartID, products.item_name, cartItem.quantity, ROUND(cartItem.quantity*products.price,2) from products join cartItem on products.productID = cartItem.productID where cartItem.shopping_cartID = $cartID;";
+	$sql_show_cart = "select cartItem.cartID, products.item_name, cartItem.quantity, ROUND(cartItem.quantity*products.price,2) as totalcost from products join cartItem on products.productID = cartItem.productID where cartItem.shopping_cartID = $cartID;";
 
 	$result_show_cart = $conn->query($sql_show_cart);
 
 	if($result_show_cart)
 	{
 		echo "<table class='carttable'border=1px>";
-		echo '<tr> <td> <strong> CartID </strong> </td> <td> <strong> Product </strong> </td> <td> <strong> Quantity </strong> </td> <td> <strong> Total Cost </strong> </td> </tr>';
+		echo '<tr><td> <strong> Product </strong> </td> <td> <strong> Quantity </strong> </td> <td> <strong> Total Cost </strong> </td> </tr>';
 		while($row = $result_show_cart->fetch_assoc())
 		{
-			foreach($row as $key=>$value)
-			{
-				echo "<td>$value</td>";
-			}
+			echo "<td>".$row['item_name']."</td>";
+			echo "<td>".$row['quantity']."</td>";
+			echo "<td>".$row['totalcost']."</td>";
+
 			$product = $row['item_name'];
 			$item_in_cart = $row['cartID'];
 			echo "<td><a href = 'deleteItem.php?shoppingcartid=".$cartID."&cartid=".$item_in_cart."&product=$product'>Delete Item</a></td>";
