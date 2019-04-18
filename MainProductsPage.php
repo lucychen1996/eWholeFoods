@@ -13,10 +13,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 $_username = $_SESSION["_username"];
 $_userID = $_SESSION["_userID"];
+// echo $_userID;
 
-$sql_cart = "SELECT shopping_cartID FROM shopping_cart WHERE shopping_cartID NOT IN (SELECT shopping_cartID FROM transactions WHERE userID = '$_userID' ) ";
+$sql_cart = "SELECT shopping_cartID FROM shopping_cart WHERE shopping_cartID NOT IN (SELECT shopping_cartID FROM transactions WHERE userID = '$_userID' ) AND userID = '$_userID' ";
 $result_cart = $conn->query($sql_cart);
 $count = mysqli_num_rows($result_cart);
+// echo $count;
 
 if($count == 0)
 {
@@ -36,6 +38,7 @@ else {
 }
 
 $cartID = $_SESSION["cartID"];
+// echo $cartID;
 
 $sql_show_products = 'select productID, item_name, CONCAT(\'$\',price,\'/\', unit) as price, image from products';
 	

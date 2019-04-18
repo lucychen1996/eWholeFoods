@@ -51,7 +51,7 @@ if(isset($cartID) && isset($_street) && isset($_city)&&isset($_state)&&isset($_z
     echo"CONFIRMED";
         $sql_insert_new_cart = "insert into shopping_cart (userID) values ($_userID);";
         $result_insert_new_cart = $conn->query($sql_insert_new_cart);
-        $sql_select_new_cart = "SELECT shopping_cartID FROM shopping_cart WHERE shopping_cartID NOT IN (SELECT shopping_cartID FROM transactions WHERE userID = '$_userID') ";
+        $sql_select_new_cart = "SELECT shopping_cartID FROM shopping_cart WHERE shopping_cartID NOT IN (SELECT shopping_cartID FROM transactions WHERE userID = '$_userID') AND userID = '$_user_ID'";
         $result_select_new_cart = $conn->query($sql_select_new_cart);
         $row = $result_select_new_cart->fetch_assoc();
         $new_cartID = $row['shopping_cartID'];
