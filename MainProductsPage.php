@@ -9,6 +9,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 ?>
 
+
+
 <?php
 
 $_username = $_SESSION["_username"];
@@ -39,6 +41,23 @@ else {
 
 $cartID = $_SESSION["cartID"];
 // echo $cartID;
+
+$sql_top_seller = "SELECT * FROM products WHERE productID = (SELECT b.productID FROM(SELECT MAX(number), productID FROM (SELECT COUNT(*) as number, productID FROM cartItem WHERE shopping_cartID IN (SELECT shopping_cartID FROM transactions) GROUP BY productID ORDER BY number DESC)as a) as b)";
+$result_top_seller = $conn->query($sql_top_seller);
+	
+	echo "<h3 id='center'>TOP SELLER</h3>";
+	$row = $result_top_seller->fetch_assoc();
+	echo "<div class='topseller'> <img src='pictures/".$row['image']."' alt='strawberry'>";
+	echo "<div class='description'<p>".$row['item_name']."</p>";
+	echo "<p>".$row['price']."</p>";
+	echo "<a href='selectItem.php?id=".$row['productID']."'>Add to cart</a>";
+	echo "</div></div>";
+	
+	
+
+			
+	
+
 
 $sql_show_products = 'select productID, item_name, CONCAT(\'$\',price,\'/\', unit) as price, image from products';
 	

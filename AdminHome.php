@@ -12,7 +12,9 @@ $_username = $_SESSION["_username"];
 echo "<br><h3>Welcome $_username </h3>";
 
 ?>
-
+<a href="allproducts.php" class="btn adminhomebtn">See All Product</a>
+<a href="sales.php" class="btn adminhomebtn">See Sales Statistics</a>
+<a href="users.php" class="btn adminhomebtn">See All Customers</a>
 
 
 <?php

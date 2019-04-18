@@ -31,8 +31,8 @@ if ($_GET['action'] == 'ByDate') {
         if($result_total_sales)
             {
                 $row = $result_total_sales->fetch_assoc();
-                echo "Total Sales from $_startdate to $_enddate";
-                echo $row['totalsales'];
+                echo "<br><h5> Total Sales from $_startdate to $_enddate:<br>";
+                echo "$".$row['totalsales']."</h5>";
             }
         else {
             $error ="Something Went Wrong";
@@ -49,11 +49,14 @@ if ($_GET['action'] == 'ByDate') {
 </form>
 <?php
 if ($_GET['action'] == 'ByState') {
-    $sql_sales_state = "SELECT addresses.state, SUM(total) as totalsales FROM transactions, addresses WHERE transactions.addressID = addresses.addressID GROUP BY addresses.state";
+    $sql_sales_state = "SELECT addresses.state, round(SUM(total),2) as totalsales FROM transactions, addresses WHERE transactions.addressID = addresses.addressID GROUP BY addresses.state";
     $result_sales_state = $conn->query($sql_sales_state);
         if($result_sales_state)
          {
-                echo "<table border=1px>";
+                echo "<br><table border=1px class='salestable'>";
+                echo "<tr>";
+                echo "<td><strong>STATE</strong></td><td><strong>Total Sales $</strong></td>";
+                echo "</tr>";
 				while($row = $result_sales_state->fetch_assoc())
 				{
 					echo "<tr>";
@@ -73,35 +76,8 @@ if ($_GET['action'] == 'ByState') {
 }
 ?>
 
-<h3>Top Seller</h3><br>
-<form name="totalSalesByState" action="sales.php?action=TopSeller" method="POST">
-    <input type="submit" value="Summary of Total Sales by State">
-</form>
-<?php
-if ($_GET['action'] == 'TopSeller') {
-    $sql_sales_state = "SELECT * FROM products WHERE productID = (SELECT productID FROM (SELECT MAX(number), productID FROM (SELECT COUNT(*) as number, c.productID FROM transactions as t JOIN shopping_cart as s ON t.shopping_cartID = s.shopping_cartID JOIN cartItem AS c ON s.shopping_cartID = c.shopping_cartID GROUP BY c.productID ORDER BY number DESC) as a) as b)";
-    $result_sales_state = $conn->query($sql_sales_state);
-        if($result_sales_state)
-         {
-                echo "<table border=1px>";
-				while($row = $result_sales_state->fetch_assoc())
-				{
-					echo "<tr>";
-					foreach($row as $key=>$value)
-					{
-						echo "<td>$value</td>";
-					}
-					echo "</tr>";
-				}
-				echo "</table>";
-            }
-        else {
-            $error ="Something Went Wrong";
-            echo $error;
-            echo "Try Again";
-        }
-}
-?>
+
+
 
 <?php
 

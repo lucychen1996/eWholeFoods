@@ -1,10 +1,17 @@
 <?php 
 
-require 'usernavbar.php';
+require 'header.php';
 require 'config.php';
 
 ?>
 
+<nav class="navbar navbar-light bg-light justify-content-between"  id="mainnav">
+                <a class="navbar-brand">eWholeFoods</a>
+                <a href="viewCart.php" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge"><?php ?></span></a>
+                <a href="logout.php">Sign Out &nbsp;&nbsp; <i style='font-size:24px' class='fas'>&#xf2f5;</i></a>
+</nav><br>
+<div class="container">
+<a href='viewCart.php' class='btn cartbtn'> Back to Cart </a><br>
 <form name="shipping" action="confirmation.php" method="POST">
     <h4> Shipping Information</h4>
     <p class="error"> <?php echo $error;?> </p>
@@ -95,7 +102,7 @@ require 'config.php';
         <input type="text" class="form-control" id="name" name="name" placeholder=" Enter Full Name on Card" required>
     </div>
     <div class="form-group ">
-        <button type="number" class="btn btn-block" id="submitbtn" value="submit" >Check Out</button>
+        <button  class="btn btn-block" id="submitbtn" value="submit" >Check Out</button>
     </div>
 </form>
 <?php

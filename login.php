@@ -3,6 +3,10 @@
 require 'header.php';
 
 ?>
+<nav class="navbar navbar-light bg-light justify-content-between"  id="mainnav">
+                <a href="home.php"class="navbar-brand">eWholeFoods</a>
+               </nav><br>
+<div class="container">
 
 
 <?php

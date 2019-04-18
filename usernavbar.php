@@ -23,8 +23,8 @@
                 </form>
                 <a href="viewCart.php" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge"><?php ?></span></a>
                 <a href="logout.php">Sign Out &nbsp;&nbsp; <i style='font-size:24px' class='fas'>&#xf2f5;</i></a>
-        </nav>
-        <h3>WELCOME <?php session_start(); echo $_SESSION["_username"];?> </h3>
+        </nav><br>
+        <h2 style="text-align:center;">WELCOME <?php session_start(); echo $_SESSION["_username"];?> </h2>
             <form class="" id="productnav" name="category" action="BrowseProductsPage.php?action=browse" method="POST" >
                 <input type="submit" value="All" name="category" class="productbtn">
                 <input type="submit" value="Fruit" name="category" class="productbtn">

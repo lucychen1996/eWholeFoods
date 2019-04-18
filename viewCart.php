@@ -26,7 +26,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 	if($result_show_cart)
 	{
-		echo "<table border=1px>";
+		echo "<table class='carttable'border=1px>";
 		echo '<tr> <td> <strong> CartID </strong> </td> <td> <strong> Product </strong> </td> <td> <strong> Quantity </strong> </td> <td> <strong> Total Cost </strong> </td> </tr>';
 		while($row = $result_show_cart->fetch_assoc())
 		{
@@ -38,22 +38,22 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			$item_in_cart = $row['cartID'];
 			echo "<td><a href = 'deleteItem.php?shoppingcartid=".$cartID."&cartid=".$item_in_cart."&product=$product'>Delete Item</a></td>";
 			echo "</tr>";
+			
 		}
-
 		echo "</table>";
+
 	}
 	$sql_cart_total = "SELECT round(SUM(price*quantity),2) as total FROM products, cartItem WHERE products.productID = cartItem.productID AND cartItem.shopping_cartID = '$cartID'";
 	$result_cart_total = $conn->query($sql_cart_total);
 	
 	$row = $result_cart_total->fetch_assoc();
-	echo "Total: ".$row['total'];
-
 	echo "<br>";
+	
+	echo "<br><h4 id='left'>Total: ".$row['total']."</h4>";
 	echo "<br>";
-
-	echo "<a href='mainproductspage.php?user=".$_username."'> Continue Browsing </a>";
+	echo "<a href='mainproductspage.php?user=".$_username."' class='btn cartbtn'> Continue Browsing </a>";
 	echo "<br>";
-	echo "<a href='checkout.php'> Proceed to Checkout </a>";
+	echo "<a href='checkout.php' class='btn cartbtn'> Proceed to Checkout </a>";
 ?>
 
 <?php

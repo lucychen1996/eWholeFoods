@@ -10,7 +10,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 ?>
-
+<br>
 <h3>Products</h3>
 <a href="addproduct.php" class="btn addbtn">Add New Product</a> 
 

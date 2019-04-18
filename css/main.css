@@ -15,6 +15,16 @@
     background-color: green;
 
 }
+
+.adminhomebtn{
+    display: flex;
+    position: relative;
+    width: 30%;
+    margin-top: 2%;
+    color:white;
+    background-color: rgba(3, 3, 97, 0.603)
+
+}
 .adminbtn {
 
     display: inline;
@@ -26,6 +36,19 @@
     align-items: center;
     color:white;
 
+}
+
+.cartbtn {
+    display: flex;
+    position: relative;
+    width: 20%;
+    color:white;
+    background-color: rgb(0, 30, 128);
+
+}
+#right{
+    float: left;
+  
 }
 #reg {
     color:white;
@@ -70,6 +93,12 @@ form {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+     align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-color: green;
+    color: white;
 }
 
 #productnav {
@@ -90,7 +119,31 @@ form {
     background-color:rgba(2, 117, 41, 0.979);
 
 }
+div.topseller {
+    border: 2px dotted blue;
+    width: 25%;
+    height: auto;
+    display: block;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: auto;
+}
 
+div.topseller img {
+    padding-top: 5%;
+    width:100%;
+    height:auto;
+    justify-content: center;
+    display: block;
+    align-items: center;
+    align-content: center;
+    margin: auto;
+  }
+#center{
+    text-align: center;
+}
 div.gallery {
     margin-top: 10%;
     border: 1px solid #ccc;
@@ -124,7 +177,7 @@ div.gallery {
 
   }
   .product {
-    width: 40%;
+    width: 30%;
     height: auto;
     display: block;
     align-items: center;
@@ -142,3 +195,12 @@ div.gallery {
     align-content: center;
     margin: auto;
 }
+
+.carttable, .salestable{
+
+    width: 50%;
+    position: relative;
+}
+
+
+

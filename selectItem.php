@@ -74,7 +74,7 @@ require 'usernavbar.php';
 
 <?php echo '<form name="quantityForm" action="" method="POST">'; ?>
 Quantity:
-	<input type="text" name="quantity">
+	<input type="number" min = 1 name="quantity" value = 1>
 	<?php echo $unit;?>
 	<input type = "submit" value = "Add to Cart">
 	<?php echo "<br>"; ?>
@@ -91,7 +91,7 @@ Quantity:
 	}
 	else if(!is_numeric($_POST["quantity"]))
 	{
-		echo "Not a valid quantity input!";
+		// echo "Not a valid quantity input!";
 
 		// $redirect = 'selectItem.php?id='.$_GET['id'];
 	}
@@ -105,7 +105,7 @@ Quantity:
 
 		$result_update_stock = $conn->query($sql_update_stock);
 
-		header('Location: MainProductsPage.php');	
+		header('Location: viewCart.php');	
 	}
 ?>
 
