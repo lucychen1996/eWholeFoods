@@ -20,7 +20,7 @@ if(isset($_username) && isset($_password) && isset($email)&&isset($first_name)&&
     $result_update  = $conn->query($sql_update);
     if($result_update) {
         echo "yay";
-        header("location: Users.php");
+        header("location: users.php");
     }
     else {
             $error = "Something Went Wrong Try Again";

@@ -13,7 +13,7 @@ $_username = $_SESSION["_username"];
 ?>
 <br>
 <h3>Total Sales By Date</h3><br>
-<form name="totalsalebydate" action="Sales.php?action=ByDate" method="POST">
+<form name="totalsalebydate" action="sales.php?action=ByDate" method="POST">
 From:
 <input type="date" name="startdate" required >
 To:
@@ -44,7 +44,7 @@ if ($_GET['action'] == 'ByDate') {
 
 <br>
 <h3>Total Sales By State</h3><br>
-<form name="totalSalesByState" action="Sales.php?action=ByState" method="POST">
+<form name="totalSalesByState" action="sales.php?action=ByState" method="POST">
     <input type="submit" value="Summary of Total Sales by State">
 </form>
 <?php
@@ -74,7 +74,7 @@ if ($_GET['action'] == 'ByState') {
 ?>
 
 <h3>Top Seller</h3><br>
-<form name="totalSalesByState" action="Sales.php?action=TopSeller" method="POST">
+<form name="totalSalesByState" action="sales.php?action=TopSeller" method="POST">
     <input type="submit" value="Summary of Total Sales by State">
 </form>
 <?php

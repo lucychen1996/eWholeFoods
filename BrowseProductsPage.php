@@ -24,7 +24,7 @@ if (isset($_POST['search'])){
 else{
 	$category = $_POST['category'];
 	if($category == 'All'){
-		header("location: MainProductsPage.php?user=$_SESSION[_username]");
+		header("location: mainproductspage.php?user=$_SESSION[_username]");
 	}
 	else {
 	$sql_show_products = "SELECT productID, item_name, CONCAT('$',price,'/',unit) as price, image from products where category = '$category'";

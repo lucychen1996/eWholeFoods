@@ -4,6 +4,7 @@ require 'usernavbar.php';
 
 ?>
 <h3>Confrimation Page<h3>
+
 <?php
 require 'config.php';
 
@@ -56,8 +57,7 @@ if(isset($cartID) && isset($_street) && isset($_city)&&isset($_state)&&isset($_z
         $new_cartID = $row['shopping_cartID'];
         $_SESSION["cartID"] = $new_cartID;
 
-
-        echo "<a href='MainProductsPage.php?'> Go Back to Shopping </a>";
+        echo "<a href='mainproductspage.php?'> Go Back to Shopping </a>";
     }
 
     

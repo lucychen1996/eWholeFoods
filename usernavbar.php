@@ -17,7 +17,7 @@
 	<body>
         <nav class="navbar navbar-light bg-light justify-content-between"  id="mainnav">
                 <a class="navbar-brand">eWholeFoods</a>
-                <form class="form-inline" action="BrowseProductsPage.php" method="POST">
+                <form class="form-inline" action="browseproductspage.php" method="POST">
                 <input class="form-control mr-sm-2" type="search" id = "search" name = "search" placeholder="Search">
                 <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value = "Search" >
                 </form>

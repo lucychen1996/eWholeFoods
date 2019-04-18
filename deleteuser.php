@@ -8,7 +8,7 @@ $_userID = $_GET["id"];
     $result_delete = $conn->query($sql_delete);
     if($result_delete) {
 
-        header("location: Users.php");
+        header("location: users.php");
     }
     else {
             $error = "Something Went Wrong";

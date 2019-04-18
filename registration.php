@@ -11,7 +11,7 @@ require 'config.php';
 session_start();
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true && isset($_SESSION["_username"])){
-    header("location: welcome.php?user=$_SESSION[_username]");
+    header("location: mainproductspage.php?user=$_SESSION[_username]");
     exit();
 }
 
@@ -46,7 +46,7 @@ if($result) {
                 $_SESSION["_username"] = $_username;
 
              
-                header("location: MainProductsPage.php?user=$_SESSION[_username]");
+                header("location: mainproductspage.php?user=$_SESSION[_username]");
     }
 }
 }

@@ -51,7 +51,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	echo "<br>";
 	echo "<br>";
 
-	echo "<a href='MainProductsPage.php?user=".$_username."'> Continue Browsing </a>";
+	echo "<a href='mainproductspage.php?user=".$_username."'> Continue Browsing </a>";
 	echo "<br>";
 	echo "<a href='checkout.php'> Proceed to Checkout </a>";
 ?>

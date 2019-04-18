@@ -9,7 +9,7 @@ require 'header.php';
 session_start();
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true && isset($_SESSION["_username"])){
-    header("location: MainProductsPage.php?user=$_SESSION[_username]");
+    header("location: mainproductspage.php?user=$_SESSION[_username]");
     exit;
 }
 
@@ -38,7 +38,7 @@ if($result_exist){
                 $_SESSION["_userID"] = $row['userID'];
               
                 if($row['is_admin'] == 1){
-                    header("location: AdminHome.php?user=$_SESSION[_username]");
+                    header("location: adminhome.php?user=$_SESSION[_username]");
                    }
                 else {
                     // $sql_cart = "SELECT shopping_cartID FROM shopping_cart WHERE shopping_cartID NOT IN (SELECT shopping_cartID FROM transactions WHERE userID = '$_userID' ) ";
@@ -63,7 +63,7 @@ if($result_exist){
                     // echo $_SESSION["cartID"];
  
 
-                    header("location: MainProductsPage.php?user=$_SESSION[_username]");
+                    header("location: mainproductspage.php?user=$_SESSION[_username]");
                 } 
             }
             else {
