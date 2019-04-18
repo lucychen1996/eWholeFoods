@@ -10,7 +10,6 @@ require 'usernavbar.php';
 	$user_name = $_SESSION["_username"];
 	$_userID = $_SESSION["_userID"];
 	$cartID = $_SESSION["cartID"];
-	echo $_SESSION["cartID"];
 	echo "<a href='MainProductsPage.php?user=$user_name'>Return to Product Browsing</a>";
 	echo "<br>";
 	echo "<br>";
