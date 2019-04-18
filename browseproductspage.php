@@ -18,7 +18,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 if (isset($_POST['search'])){
 	$_keyword = $_POST["search"];
-	$sql_show_products = "SELECT productID, item_name, CONCAT('$',price,'/',unit) as price, image from products where item_name like '%$_keyword%'";
+	$sql_show_products = "SELECT productID, item_name, CONCAT('$',price,'/',unit) as price, image from products where item_name like '%$_keyword%' AND current_stock_quantity != 0 ";
 
 }
 else{
@@ -27,7 +27,7 @@ else{
 		header("location: mainproductspage.php?user=$_SESSION[_username]");
 	}
 	else {
-	$sql_show_products = "SELECT productID, item_name, CONCAT('$',price,'/',unit) as price, image from products where category = (SELECT categoryID FROM categories WHERE category_name = '$category')  ORDER BY item_name";
+	$sql_show_products = "SELECT productID, item_name, CONCAT('$',price,'/',unit) as price, image from products where current_stock_quantity != 0 AND category = (SELECT categoryID FROM categories WHERE category_name = '$category')  ORDER BY item_name";
 	}
 }	
 	$result_show_products = $conn->query($sql_show_products);

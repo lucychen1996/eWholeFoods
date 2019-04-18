@@ -11,7 +11,6 @@ require 'config.php';
                 <a href="logout.php">Sign Out &nbsp;&nbsp; <i style='font-size:24px' class='fas'>&#xf2f5;</i></a>
 </nav><br>
 <div class="container">
-<h3 id="center">Confrimation Page<h3>
 
 <?php
 require 'config.php';
@@ -53,9 +52,8 @@ if(isset($cartID) && isset($_street) && isset($_city)&&isset($_state)&&isset($_z
     $result_transaction = $conn->query($sql_transaction);
 
 
-
     if($result_transaction){
-  
+        echo "<h3 id='center'>Confrimation Page<h3>";
         $sql_insert_new_cart = "insert into shopping_cart (userID) values ($_userID);";
         $result_insert_new_cart = $conn->query($sql_insert_new_cart);
         $sql_select_new_cart = "SELECT shopping_cartID FROM shopping_cart WHERE shopping_cartID NOT IN (SELECT shopping_cartID FROM transactions WHERE userID = '$_userID') AND userID = '$_user_ID'";
@@ -65,6 +63,9 @@ if(isset($cartID) && isset($_street) && isset($_city)&&isset($_state)&&isset($_z
         $_SESSION["cartID"] = $new_cartID;
 
         echo "<a href='mainproductspage.php?'class='btn btn-block' id='submitbtn'> Go Back to Shopping </a>";
+    }
+    else {
+        echo "Try Agin";
     }
 
     

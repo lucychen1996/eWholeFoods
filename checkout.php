@@ -102,7 +102,7 @@ require 'config.php';
         <input type="text" class="form-control" id="name" name="name" placeholder=" Enter Full Name on Card" required>
     </div>
     <div class="form-group ">
-        <button  class="btn btn-block" id="submitbtn" value="submit" >Check Out</button>
+        <button  class="btn btn-block" id="submitbtn" value="submit" >ORDER</button>
     </div>
 </form>
 <?php
