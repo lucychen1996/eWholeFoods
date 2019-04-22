@@ -31,11 +31,11 @@ if(isset($_username) && isset($_password) && isset($email)&&isset($first_name)&&
 $sql = "SELECT userID FROM user WHERE _username = '$_username'";
 $result = $conn->query($sql);
 
-echo $sql;
+
 
 if($result) {
     $count = mysqli_num_rows($result);
-    echo $count;
+ 
     if($count == 1) {
 
         $error = "Username is Taken";

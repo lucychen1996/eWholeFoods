@@ -25,7 +25,7 @@ if ($_GET['action'] == 'ByDate') {
     $_startdate = $_POST["startdate"];
     $_enddate = $_POST["enddate"];
 
-    $sql_total_sales = "SELECT SUM(total) as totalsales FROM transactions WHERE order_date BETWEEN '$_startdate' AND '$_enddate'";
+    $sql_total_sales = "SELECT round(SUM(total),2) as totalsales FROM transactions WHERE order_date BETWEEN '$_startdate' AND '$_enddate'";
     $result_total_sales = $conn->query($sql_total_sales);
 
         if($result_total_sales)
